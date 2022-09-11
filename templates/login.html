@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+<!-- TITLE OF THE PAGE -->
+{% block title %}
+
+{% endblock %}
+
+<!-- BODY OF THE PAGE -->
+{% block body %}
+<center>
+    <h1>Login here</h1>
+    <div class="login">
+        <form action="/{{type}}/login", method="post">
+            <input type="email" name="email" id="email">
+            <input type="password" name="password", id="password">
+            <input type="submit">
+        </form>
+    </div>
+    <h1></h1>
+    <div class="signup">
+        <h1>New? Signup here</h1>
+        <form action="/{{type}}/signup", method="post">
+            <input type="email" name="email" id="email">
+            <input type="password" name="password", id="password">
+            <input type="submit">
+        </form>
+    </div>
+
+</center>
+{% endblock %}

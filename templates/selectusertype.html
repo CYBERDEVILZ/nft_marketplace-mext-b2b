@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+Select User Type
+{% endblock %}
+
+{% block body %}
+<center>
+    <button type="button" id="booth" class="btn btn-info">Booth Owner</button>
+    <button type="button" id="customer" class="btn btn-info">Customer</button>
+</center>
+<script>
+    document.getElementById("booth").addEventListener("click", () => window.location.pathname = "/booth/login")
+    document.getElementById("customer").addEventListener("click", () => window.location.pathname = "/customer/login")
+</script>
+{% endblock %}

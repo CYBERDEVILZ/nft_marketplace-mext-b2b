@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+<!-- TITLE OF THE PAGE -->
+{% block title %}
+
+{% endblock %}
+
+<!-- BODY OF THE PAGE -->
+{% block body %}
+<center>
+    <h1>Select a booth type</h1>
+    <button type="button" class="btn btn-primary">YouTube Video Booth</button>
+    <button type="button" class="btn btn-primary" id="nft">NFT Booth</button>
+    <button type="button" class="btn btn-primary">Games Booth</button>
+</center>
+<script>
+    var nftbooth = document.getElementById("nft").addEventListener("click", () =>window.location.pathname = "/connectWallet")
+</script>
+{% endblock %}

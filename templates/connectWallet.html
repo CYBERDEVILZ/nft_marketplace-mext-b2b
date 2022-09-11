@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+<!-- TITLE OF THE PAGE -->
+{% block title %}
+Connect Wallet
+{% endblock %}
+
+<!-- BODY OF THE PAGE -->
+{% block body %}
+<center>
+    <button type="button" id = "connectButton" class="btn btn-info">Connect</button>
+</center>
+<script type="text/javascript">
+    // GLOBALS
+    window.walletAddress = null;
+
+    // VARIABLES
+    var connectButton = document.getElementById("connectButton");
+
+    // EVENT LISTENERS
+    connectButton.addEventListener("click", connectWallet)
+
+    // FUNCTIONS
+    async function connectWallet(){
+        if(typeof window.ethereum != "undefined"){
+            const accounts = await window.ethereum.request({method: "eth_requestAccounts"})
+            .catch((e) => {
+                console.error(e.message); 
+                return;
+            });
+
+            // check if there is any account returned
+            if (!accounts) {
+                return;
+            }
+
+            // switch to polygon testnet
+            try{
+                await window.ethereum.request({
+                    method: "wallet_switchEthereumChain",
+                    params: [{chainId: "0x13881"}]
+                })
+            }
+            catch(switchError){
+                // This error code indicates that the chain has not been added to MetaMask.
+                if (switchError.code === 4902) {
+                    try {
+                    await ethereum.request({
+                        method: 'wallet_addEthereumChain',
+                        params: [
+                        {
+                            chainId: "0x13881",
+                            chainName:"Mumbai",
+                            rpcUrls: ["https://matic-mumbai.chainstacklabs.com","https://rpc-mumbai.maticvigil.com","https://matic-testnet-archive-rpc.bwarelabs.com"],
+                            nativeCurrency:
+                            {
+                                name:"MATIC",
+                                symbol:"MATIC",
+                                decimals:18
+                            },
+                            blockExplorerUrls:["https://mumbai.polygonscan.com"]
+                        },
+                        ],
+                    });
+                    } catch (addError) {
+                    // handle "add" error
+                    console.error(addError.message);
+                    return;
+                    }
+                }
+                else{
+                    return
+                }
+            }
+            
+            // if connected successfully, redirect to nftBooth endpoint
+            
+            window.location.pathname = '/nftbooth'
+        }
+    }
+
+</script>
+{% endblock %}
