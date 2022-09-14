@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, url_for
 import requests, json
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from firebase_admin import auth
-from web3 import Web3
+# from web3 import Web3
 
 # FIREBASE CONFIG
 cred = credentials.Certificate(r'env\nft-marketplace-mustb2b-firebase-adminsdk-uu5ru-78e423d239.json')
@@ -16,12 +16,13 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "nft-marketplace-mustb2b"
 
 # WEB3 CONFIG
-web3 = Web3(Web3.HTTPProvider("https://polygon-mumbai.infura.io/v3/649dce30cf974f4a9ad9329bcb7fb59a"))
-print(web3.isConnected())
+# web3 = Web3(Web3.HTTPProvider("https://polygon-mumbai.infura.io/v3/649dce30cf974f4a9ad9329bcb7fb59a"))
+# print(web3.isConnected())
 
 # PINATA CONFIG
 url = "https://api.pinata.cloud/data/testAuthentication"
-headers = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJlYzgzNmI0OC05NTNlLTQ2ZWYtODkzMy1mMDU0NjYwMjQ2ZTYiLCJlbWFpbCI6InByYW5hdmNvc21vczRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImYzMmVmMDY0MzZmMzVlMjA2ZGJkIiwic2NvcGVkS2V5U2VjcmV0IjoiMWYxMTY0OTliYjVmZTM2OGUwMDk2Y2ZjNWIxOWQyOWNmZjI5ZTlhMzU2MTZlMDljZjNlMzY2M2U0ZjcyYWM3ZiIsImlhdCI6MTY2MjgzMzg5N30.l-2R-1EiPyLVPQDGd3acostkRMuNCFW9am1byyYvHNo' }
+header = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJlYzgzNmI0OC05NTNlLTQ2ZWYtODkzMy1mMDU0NjYwMjQ2ZTYiLCJlbWFpbCI6InByYW5hdmNvc21vczRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImYzMmVmMDY0MzZmMzVlMjA2ZGJkIiwic2NvcGVkS2V5U2VjcmV0IjoiMWYxMTY0OTliYjVmZTM2OGUwMDk2Y2ZjNWIxOWQyOWNmZjI5ZTlhMzU2MTZlMDljZjNlMzY2M2U0ZjcyYWM3ZiIsImlhdCI6MTY2MjgzMzg5N30.l-2R-1EiPyLVPQDGd3acostkRMuNCFW9am1byyYvHNo' }
+jsonheader = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJlYzgzNmI0OC05NTNlLTQ2ZWYtODkzMy1mMDU0NjYwMjQ2ZTYiLCJlbWFpbCI6InByYW5hdmNvc21vczRAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImYzMmVmMDY0MzZmMzVlMjA2ZGJkIiwic2NvcGVkS2V5U2VjcmV0IjoiMWYxMTY0OTliYjVmZTM2OGUwMDk2Y2ZjNWIxOWQyOWNmZjI5ZTlhMzU2MTZlMDljZjNlMzY2M2U0ZjcyYWM3ZiIsImlhdCI6MTY2MjgzMzg5N30.l-2R-1EiPyLVPQDGd3acostkRMuNCFW9am1byyYvHNo', 'Content-Type': 'application/json'}
 
 
 # DEFAULT
@@ -122,20 +123,27 @@ def upload_file():
         if file.filename == '':
             return redirect(request.url)
         if file:
-            try:
-                # send file to ipfs storage
-                url = "https://api.pinata.cloud/pinning/pinFileToIPFS"
-                files=[
-                ('file',(file.filename,file.read(),'application/octet-stream'))
-                ]
-                response = requests.request("POST", url, headers=headers, files=files)
-                ipfsHash = json.loads(response.text)["IpfsHash"]
-                # send metadata to contract
-                if ipfsHash != None:
-                    print (f"send the metadata like name, description, IPFSURI: https://ipfs.filebase.io/ipfs/{ipfsHash}, price to contract to let it store there")
-                    return redirect("/nftbooth")
-            except:
-                return "awww snap! something went wrong"
+            # send file to ipfs storage
+            url = "https://api.pinata.cloud/pinning/pinFileToIPFS"
+            files=[
+            ('file',(file.filename,file.read(),'application/octet-stream'))
+            ]
+            response = requests.request("POST", url, headers=header, files=files)
+            print("Starting")
+            ipfsHash = json.loads(response.text)["IpfsHash"]
+            print("done")
+
+            if ipfsHash == None:
+                return redirect("/nftbooth")
+            # send metadata to contract
+            url = "https://api.pinata.cloud/pinning/pinJSONToIPFS"
+            payload = json.dumps({"pinataContent": {"name": request.form["name"], "image": ipfsHash, "description": request.form["description"]}})
+            response = requests.request("POST", url, headers=jsonheader, data=payload)
+            jsonIpfsHash = json.loads(response.text)["IpfsHash"]
+            print("done done")
+            if jsonIpfsHash == None:
+                return redirect("/nftbooth")
+            return redirect(url_for('.mintnft', name=request.form["name"], metadataURI=f"https://gateway.pinata.cloud/ipfs/{jsonIpfsHash}", imageuri=f"https://gateway.pinata.cloud/ipfs/{ipfsHash}", price=request.form["price"]))
     return "awww snap! something went wrong"
 
 
@@ -154,7 +162,10 @@ def nftview(id):
         return redirect("/")
     return render_template("viewnft.html", id=id)
     
-
+# MINT NFT ROUTE
+@app.route("/mintnft")
+def mintnft():
+    return render_template("mintnft.html", name=request.args['name'], metadataURI=request.args['metadataURI'], imageuri=request.args['imageuri'], price=request.args['price'])
 
 if(__name__ == "__main__"):
     app.run(debug=True)
