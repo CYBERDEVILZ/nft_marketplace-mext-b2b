@@ -24,27 +24,21 @@ NFT# {{id}}
             name = s["name"];
             owner = s["owner"];
             imageuri = s["imageuri"]
-            var imagediv = document.getElementById("image")
-            var imgelement = document.createElement("img")
-            imgelement.src = imageuri
-            imagediv.appendChild(imgelement)
-           var namediv = document.getElementById("name")
-		   var namelement = document.createTextNode(name)
-		   namediv.appendChild(namelement)
-		   var priceButton = document.getElementById("buttonPrice")
+            var imageElement = document.querySelector("#nftimg")
+            imageElement.setAttribute("src", imageuri)
+            var nameDiv = document.querySelector(".name")
+            nameDiv.innerHTML = name
+		   var priceButton = document.getElementById("priceButton")
 		   priceButton.innerHTML = "Buy: "+priceInEth+" MATIC"
 		   if (owner == walletAddress){
 			priceButton.setAttribute("disabled", "true")
-			var ownedDiv = document.getElementById("owned")
-		   ownedDiv.innerHTML = "You own this NFT!"
+			priceButton.innerHTML = "YOU OWN THIS NFT!"
 		   }
            else{
             priceButton.addEventListener("click", () => {buyNFT(id)})
            }
         });		
     }
-
-    
 
     // gets called if the account is changed
     try{
@@ -65,6 +59,22 @@ NFT# {{id}}
         console.log(e.message)
     }
 </script>
+
+<div class="parentClass" style="display: flex; height: 100vh; justify-content: center; align-items: center">
+<div class="bigdiv">
+    <div class="imageDiv" style="height: 400px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+        <div class="image" style="border: 5px solid royalblue;">
+            <img id="nftimg" src="x" height="400px">
+        </div>
+    </div>
+    <div class="name" style="font-size: 40px; margin-bottom: 10px">
+        <p>Loading...</p>
+    </div>
+    <div class="price">
+        <button class="btn btn-primary" style="font-size: 20px;" id="priceButton">Loading...</button>
+    </div>
+</div>
+</div>
 <div id="image">
 </div>
 <div id="name"></div>

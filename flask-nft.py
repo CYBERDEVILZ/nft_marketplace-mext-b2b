@@ -152,7 +152,6 @@ def upload_file():
 def nftbooth():
     if session.get("uid") == None:
         return redirect("/")
-    # data = db.collection("nftbooths").document(session["uid"]).get().to_dict()
     return render_template("nftbooth.html")
 
 # VIEW NFT

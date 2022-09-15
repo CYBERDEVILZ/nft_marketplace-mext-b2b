@@ -4,16 +4,28 @@
 NFT Booth
 {% endblock %}
 
+<!-- STYLE -->
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='nftbooth.css')}}">
+{% endblock %}
+
 <!-- BODY OF THE PAGE -->
 {% block body %}
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 <script src="{{url_for('static', filename='web3Connect.js')}}"></script>
-<div class="nfts" style="margin: 20px;">
-	<div id="gallery">
-	</div>
+
+
+<!-- CONTENT HERE -->
+<div class="heading">
+    <h1>Your NFTs up For Sale!</h1>
 </div>
-<br>
+<div class="gallery"></div>
+<div class="createButton">
     <button type="button" class="btn btn-info" onclick="createnftpage()">Create NFT</button>
+</div>
+
+
+<!-- SCRIPT HERE -->
 <script>
     var contractInstance = null;
 
@@ -29,15 +41,19 @@ NFT Booth
 		await contractInstance.methods.mynft(walletAddress).call({from: walletAddress})
 		.then((s) => {
 			s.forEach(element => {
-				var gallery = document.getElementById("gallery")
-				var entry = document.createElement("img");
-				var tokenId = element["tokenId"]
-				entry.id = "nft_images"
-				entry.src = element["imageuri"]
+                var tokenId = element["tokenId"];
+                var name = element["name"];
+				var gallery = document.querySelector(".gallery")
+                var cardDiv = document.createElement("div")
+                cardDiv.setAttribute("class", "card")
+                var entry = document.createElement("img");
+				entry.src = element["imageuri"];
 				entry.addEventListener("click", ()=>{
 					window.location.pathname = "/nftbooth/"+tokenId
 				})
-				gallery.appendChild(entry)
+                cardDiv.appendChild(entry)
+				gallery.appendChild(cardDiv)
+
 			});		
 		});
     }

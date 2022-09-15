@@ -1,18 +1,28 @@
-{% extends "base.html" %}
-<!-- TITLE OF THE PAGE -->
-{% block title %}
+<html>
+    <head>
+        <title>Select Booth</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='selectbooth.css')}}">
+    </head>
 
-{% endblock %}
+    <!-- BODY OF THE PAGE -->
+    <body>
+        <div class="container">
+            <div class="login">
+                <div class="form">
+                    <h1>Select booth</h1>
+                    <hr>
+                    <button>YouTube Booth</button>
+                    <button onclick="navigate()">NFT Booth</button>
+                    <button>Games Booth</button>
+                </div>
+            </div>
+        </div>
+    <body>
+    
+    <script>
+        function navigate(){
+            window.location = "/nftbooth"
+        }
+    </script>
 
-<!-- BODY OF THE PAGE -->
-{% block body %}
-<center>
-    <h1>Select a booth type</h1>
-    <button type="button" class="btn btn-primary">YouTube Video Booth</button>
-    <button type="button" class="btn btn-primary" id="nft">NFT Booth</button>
-    <button type="button" class="btn btn-primary">Games Booth</button>
-</center>
-<script>
-    var nftbooth = document.getElementById("nft").addEventListener("click", () =>window.location.pathname = "/connectWallet")
-</script>
-{% endblock %}
+</html>
