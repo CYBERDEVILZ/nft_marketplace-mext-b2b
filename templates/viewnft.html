@@ -1,85 +1,94 @@
-{%extends "base.html"%}
+<!DOCTYPE html>
+<html lang="en">
 
-{%block title%}
-NFT# {{id}}
-{%endblock%}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NFT #{{id}}</title>
+        <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+        <script src="{{ url_for('static', filename='web3Connect.js') }}" type="text/javascript"></script>
+        <link rel="stylesheet" href="{{url_for('static', filename='viewnft.css')}}">
+    </head>
 
-{%block body%}
-<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-<script src="{{ url_for('static', filename='web3Connect.js') }}" type="text/javascript"></script>
-<script>
-        // FUNCTIONS
-	function createnftpage(){
-		window.location="/createNFT"
-	}
-
-    // retrieve nft DATA
-    retrieveNFT = async () => {
-        id = "{{id}}"
-        contractInstance = await new web3.eth.Contract(abi, addressContract);
-        await contractInstance.methods.getNFTdata(id).call({from: walletAddress})
-		.then((s) => {
-            price = s["price"];
-            priceInEth = window.web3.utils.fromWei(price, "ether");
-            name = s["name"];
-            owner = s["owner"];
-            imageuri = s["imageuri"]
-            var imageElement = document.querySelector("#nftimg")
-            imageElement.setAttribute("src", imageuri)
-            var nameDiv = document.querySelector(".name")
-            nameDiv.innerHTML = name
-		   var priceButton = document.getElementById("priceButton")
-		   priceButton.innerHTML = "Buy: "+priceInEth+" MATIC"
-		   if (owner == walletAddress){
-			priceButton.setAttribute("disabled", "true")
-			priceButton.innerHTML = "YOU OWN THIS NFT!"
-		   }
-           else{
-            priceButton.addEventListener("click", () => {buyNFT(id)})
-           }
-        });		
-    }
-
-    // gets called if the account is changed
-    try{
-        window.ethereum.on('accountsChanged', (accounts) => {
-            if(accounts.length == 0){
-                window.location = "/selectbooth"
+    <body>
+        <!-- SCRIPTS HERE -->
+        <script>
+                // FUNCTIONS
+            function createnftpage(){
+                window.location="/createNFT"
             }
-            else{
-                window.location.reload()
-            }
-        });
-    
-        access();
-        retrieveNFT();
         
-    }
-    catch(e){
-        console.log(e.message)
-    }
-</script>
+            // retrieve nft DATA
+            retrieveNFT = async () => {
+                id = "{{id}}"
+                contractInstance = await new web3.eth.Contract(abi, addressContract);
+                await contractInstance.methods.getNFTdata(id).call({from: walletAddress})
+                .then((s) => {
+                    price = s["price"];
+                    priceInEth = window.web3.utils.fromWei(price, "ether");
+                    name = s["name"];
+                    owner = s["owner"];
+                    imageuri = s["imageuri"]
+                    var imageElement = document.querySelector("#nftimg")
+                    imageElement.setAttribute("src", imageuri)
+                    var nameDiv = document.querySelector(".name")
+                    nameDiv.innerHTML = name
+                var priceButton = document.getElementById("priceButton")
+                priceButton.innerHTML = "Buy: "+priceInEth+ "<img id='polygonimg' src='{{url_for('static', filename='/images/polygon.png')}}'>"
+                if (owner == walletAddress){
+                    priceButton.setAttribute("disabled", "true")
+                    priceButton.innerHTML = "owned by you."
+                }
+                else{
+                    priceButton.addEventListener("click", () => {buyNFT(id)})
+                }
+                });		
+            }
+        
+            // gets called if the account is changed
+            try{
+                window.ethereum.on('accountsChanged', (accounts) => {
+                    if(accounts.length == 0){
+                        window.location = "/selectbooth"
+                    }
+                    else{
+                        window.location.reload()
+                    }
+                });
+            
+                access();
+                retrieveNFT();
+                
+            }
+            catch(e){
+                console.log(e.message)
+            }
+        </script>
 
-<div class="parentClass" style="display: flex; height: 100vh; justify-content: center; align-items: center">
-<div class="bigdiv">
-    <div class="imageDiv" style="height: 400px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
-        <div class="image" style="border: 5px solid royalblue;">
-            <img id="nftimg" src="x" height="400px">
+        <!-- CONTENTS HERE -->
+        <div class="main">
+            <div class="outerDiv">
+                <div class="tokenId"># {{id}}</div>
+                <div class="bigdiv">
+                    <div class="imageDiv">
+                        <div class="image">
+                            <img id="nftimg" src="x" height="400px">
+                        </div>
+                    </div>
+
+                    <div class="name">
+                        <p>Loading...</p>
+                    </div>
+
+                    <div class="price">
+                        <button id="priceButton">Loading...</button>
+                    </div>
+
+                    <div id="owned"></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="name" style="font-size: 40px; margin-bottom: 10px">
-        <p>Loading...</p>
-    </div>
-    <div class="price">
-        <button class="btn btn-primary" style="font-size: 20px;" id="priceButton">Loading...</button>
-    </div>
-</div>
-</div>
-<div id="image">
-</div>
-<div id="name"></div>
-<div id="price">
-	<button id="buttonPrice"></button>
-</div>
-<div id="owned"></div>
-{%endblock%}
+
+    </body>
+</html>
