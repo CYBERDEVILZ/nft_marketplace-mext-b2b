@@ -1,0 +1,91 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    background-image: linear-gradient(203deg, #4158D0 0%, #C850C0 46%,   #FFCC70 100%);
+    font-size: 80px;
+    text-align: right;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    background-size: 100%;
+}
+
+.login {
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%,   #FFCC70 100%);
+    width: 600px;
+    height: max-content;
+    justify-content: center;
+    margin: 20px;
+    padding: 5px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+input {
+    margin: 5px;
+    height: 50px;
+    width: 500px;
+    font-size: large;
+    border-radius: 10px;
+    color: #4158D0;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #C850C0 ;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #4158D0;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+  }
+
+.paddedClass {
+    padding: 20px;
+    background-color: white;
+}
+
+input:focus{
+    outline-color: #C850C0;
+    border: 3px solid #C850C0;
+}
+
+input[type="submit"]{
+    margin-top: 30px;
+    width: 100px;
+    background-color: #4158D0 ;
+    color: white;
+    border: 0px;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+.login-signup {
+    display: flex;
+}
