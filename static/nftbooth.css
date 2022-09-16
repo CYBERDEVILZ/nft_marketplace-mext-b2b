@@ -15,11 +15,13 @@ body {
 .gallery {
     display: flex;
     flex-wrap: wrap;
+    margin: 10px;
 }
+
 
 h1 {
     font-size: 80px;  
-    margin: 20px; 
+    margin: 30px; 
     color: white; 
 }
 
@@ -33,6 +35,12 @@ img {
 
 img:hover{
     box-shadow: 5px 5px 20px #FFCC70; 
+}
+
+.createButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button {

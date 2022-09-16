@@ -21,21 +21,27 @@ h1 {
 input {
     height: 40px;
     padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
     font-size: 20px;
     margin-bottom: 20px;
     width: 450px;
     border: 0px;
     border-radius: 10px;
+    color: grey;
 }
 
 textarea {
     height: 100px;
     padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
     font-size: 20px;
     margin-bottom: 20px;
     width: 450px;
     border: 0px;
     border-radius: 10px;
+    color: grey;
 }
 
 .chooseFile {
@@ -51,6 +57,7 @@ input[type="submit"] {
     padding-left: 20px;
     padding-right: 20px;
     font-weight: 600;
+    color: #4158D0;
 }
 
 input:focus{
@@ -71,4 +78,8 @@ textarea:hover{
 
 input[type="submit"]:hover {
     box-shadow: 5px 5px 20px #FFCC70;
+}
+
+input[type="file"] {
+    color: white;
 }
