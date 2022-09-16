@@ -1,56 +1,36 @@
-{% extends "base.html" %}
-{% block title %}
-Create NFT
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block body %}
-<style>
-    .gap {
-        margin: 10px
-    }
-    
-    #name{
-        width: 300px;
-        height: 50px;
-        padding: 20px;
-        font-size: large;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create NFT</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='createnft.css')}}">
+</head>
 
-    #description{
-        width: 300px;
-        height: 50px;
-        padding: 20px;
-        font-size: large;
-    }
-
-    #price{
-        width: 300px;
-        height: 50px;
-        padding: 20px;
-        font-size: large;
-    }
-
-</style>
-<div class="centerDiv" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-<div class="form">
-    <h1 style="padding: 20px;">Enter some Details</h1>
-    <form action="/createNFT" method="post" enctype=multipart/form-data>
-        <div class="name gap">
-            <input type="text" id="name" name="name" placeholder="Name of NFT">
+<body>
+    <div class="centerDiv">
+        <div class="form">
+            <h1>enter nft details.</h1>
+            <form action="/createNFT" method="post" enctype=multipart/form-data>
+                <div class="name">
+                    <input type="text" id="name" name="name" placeholder="Name of NFT">
+                </div>
+                <div class="desc">
+                    <textarea type="text", id="description" name="description" placeholder="Description (limit it to 20 words)"></textarea>
+                </div>
+                <div class="price">
+                    <input type="text" name="price" id="price" placeholder="Price (minimum 0.01 MATIC)">
+                </div>
+                <div class="chooseFile">
+                    <input type="file" name="file" id="file">
+                </div>
+                <div class="gap">
+                    <input type="submit" value="submit.">
+                </div>
+            </form>
         </div>
-        <div class="desc gap">
-            <input type="text", id="description" name="description" placeholder="Description">
-        </div>
-        <div class="price gap">
-            <input type="text" name="price" id="price" placeholder="Price (minimum 0.01 MATIC)">
-        </div>
-        <div class="chooseFile gap">
-            <input type="file" name="file" id="file">
-        </div>
-        <div class="gap">
-            <input type="submit">
-        </div>
-    </form>
-</div>
-</div>
-{% endblock %}
+    </div>
+</body>
+</html>
