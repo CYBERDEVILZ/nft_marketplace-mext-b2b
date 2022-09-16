@@ -1,29 +1,37 @@
-{% extends "base.html" %}
-<!-- TITLE OF THE PAGE -->
-{% block title %}
+<html>
+    <head>
+        <title>Login/Signup</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
+    </head>
+    <body>
+        <div class="login-signup">
 
-{% endblock %}
+            <div class="login">
+                <div class="paddedClass">
+                    <h1 class="heading">login.</h1>
+                    <form class="form" action="/{{type}}/login", method="post">
+                        <div class="elem">
+                            <div class="email"><input type="email" name="email" id="email" placeholder="email"></div>
+                            <div class="password"><input type="password" name="password", id="password" placeholder="password"></div>
+                            <div class="submit"><input type="submit"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-<!-- BODY OF THE PAGE -->
-{% block body %}
-<center>
-    <h1>Login here</h1>
-    <div class="login">
-        <form action="/{{type}}/login", method="post">
-            <input type="email" name="email" id="email">
-            <input type="password" name="password", id="password">
-            <input type="submit">
-        </form>
-    </div>
-    <h1></h1>
-    <div class="signup">
-        <h1>New? Signup here</h1>
-        <form action="/{{type}}/signup", method="post">
-            <input type="email" name="email" id="email">
-            <input type="password" name="password", id="password">
-            <input type="submit">
-        </form>
-    </div>
+            <div class="login">
+                <div class="paddedClass">
+                    <h1 class="heading">signup.</h1>
+                    <form class="form" action="/{{type}}/signup", method="post">
+                        <div class="elem">
+                            <div class="email"><input type="email" name="email" id="email" placeholder="email"></div>
+                            <div class="password"><input type="password" name="password", id="password" placeholder="password"></div>
+                            <div class="submit"><input type="submit"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-</center>
-{% endblock %}
+        </div>
+    </body>
+</html>

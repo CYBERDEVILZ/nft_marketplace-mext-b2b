@@ -69,10 +69,10 @@ def login(select):
                     pass
                 return redirect("/metaverse")
             else:
-                return redirect("/")
+                return redirect(f"/{select}/login")
 
         except:
-            return redirect("/")
+            return redirect(f"/{select}/login")
 
 # SIGNUP
 @app.route("/<select>/signup", methods=["GET", "POST"])
