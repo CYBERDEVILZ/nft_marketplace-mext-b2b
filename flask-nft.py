@@ -33,6 +33,9 @@ def selectUserType():
 # LOGIN
 @app.route("/<select>/login", methods=["GET", "POST"])
 def login(select):
+    if session.get("uid") != None and session.get("cid") != None:
+        session.pop("uid")
+        session.pop("cid")
     if session.get("uid") != None:
         return redirect("/selectbooth")
     if session.get("cid") != None:
@@ -53,9 +56,17 @@ def login(select):
             uid = json.loads(response.text)["localId"]
             if select == "booth":
                 session["uid"] = uid
+                try:
+                    session.pop("cid")
+                except:
+                    pass
                 return redirect("/selectbooth")
             if select == "customer":
                 session["cid"] = uid
+                try:
+                    session.pop("uid")
+                except:
+                    pass
                 return redirect("/metaverse")
             else:
                 return redirect("/")

@@ -36,7 +36,6 @@ body {
 
 h1 {
   background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%,   #FFCC70 100%);
-  background-size: 100%;
   font-size: 100px;
   margin: 20px;
   text-align: center;
@@ -45,6 +44,7 @@ h1 {
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent; 
   -moz-text-fill-color: transparent;
+  background-size: 100%;
 
 }
 
@@ -65,4 +65,23 @@ button {
   margin-top: 20px;
   border-radius: 8px;
   background-image: linear-gradient(223deg, #4158D0 0%, #C850C0 46%);
+}
+
+.addmore {
+  font-size: 20px;
+  display: flex;
+  justify-content: right;
+  margin: 20px;
+  font-weight: bolder;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  background-size: 100%;
+  background-image: linear-gradient(223deg, #4158D0 0%, #C850C0 46%);
+}
+
+.addmore:hover {
+  cursor: pointer;
 }
