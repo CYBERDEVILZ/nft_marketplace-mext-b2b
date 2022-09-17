@@ -611,6 +611,23 @@ window.location="/nftbooth"}, (failed)=>{console.log("failed"); window.location=
 buyNFT = async (tokenId) => {
 	await access();
 	var contractInstance = await new web3.eth.Contract(abi, addressContract);
+	var price = null;
+	await contractInstance.methods.getNFTdata(tokenId).call({from: walletAddress}).
+	then((success) => {
+		price = success["price"];
+	}, 
+	(failure) => {
+		alert("something went wrong!");
+		window.location="/nftbooth/viewnft/"+tokenId;
+	}).catch((e)=>console.log(e));
 	await contractInstance.methods.buy(tokenId).send({from: walletAddress, value: price}).
-	then((success) =>{alert("transaction success"); window.location="/metaverse"}, (failed) => {alert("transaction failed")}).catch((e)=>{console.log(e.message); window.location="/nftbooth"});
+	then((success) =>{
+		alert("transaction success"); window.location="/nftbooth/"+tokenId
+	},
+	(failed) => {
+		alert("transaction failed");  window.location="/nftbooth/"+tokenId
+	})
+	.catch((e)=>{
+		console.log(e.message); window.location="/nftbooth/"+tokenId
+	});
 }

@@ -41,7 +41,7 @@
                     priceButton.innerHTML = "owned by you."
                 }
                 else{
-                    priceButton.addEventListener("click", () => {buyNFT(id)})
+                    priceButton.addEventListener("click", () => {window.location="/buynft/{{id}}"})
                 }
                 });		
             }

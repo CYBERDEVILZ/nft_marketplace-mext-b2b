@@ -177,5 +177,9 @@ def nftview(id):
 def mintnft():
     return render_template("mintnft.html", name=request.args['name'], metadataURI=request.args['metadataURI'], imageuri=request.args['imageuri'], price=request.args['price'])
 
+@app.route("/buynft/<id>")
+def buynft(id):
+    return render_template("buynft.html", id=id)
+
 if(__name__ == "__main__"):
     app.run(debug=True)
