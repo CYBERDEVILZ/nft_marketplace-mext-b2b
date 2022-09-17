@@ -4,11 +4,20 @@
     font-family: sans-serif;
 }
 
-body {
+.mainDiv {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
+}
+
+.navb {
+    display: flex;
+    justify-content: center;
+}
+
+.mustlogo img{
+    height: 175px;
 }
 
 h1 {

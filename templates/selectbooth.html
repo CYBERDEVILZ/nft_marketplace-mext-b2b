@@ -6,15 +6,23 @@
 
     <!-- BODY OF THE PAGE -->
     <body>
-        <div class="container">
-            <div class="login">
-                <div class="form">
-                    <h1>select booth.</h1>
-                    <hr>
-                    <button>YouTube Booth</button>
-                    <button onclick="navigate()">NFT Booth</button>
-                    <button>Games Booth</button>
-                    <div class="addmore">add more...</div>
+        <div class="navBar">
+            <div class="mustlogo">
+                <img src="{{url_for('static', filename='/images/must-logo.png')}}">
+            </div>
+            <div class="signout" onclick="signout()">signout.</div>
+        </div>
+        <div class="mainDiv">
+            <div class="container">
+                <div class="login">
+                    <div class="form">
+                        <h1>select booth.</h1>
+                        <hr>
+                        <button>YouTube Booth</button>
+                        <button onclick="navigate()">NFT Booth</button>
+                        <button>Games Booth</button>
+                        <div class="addmore">add more...</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,6 +32,9 @@
     <script>
         function navigate(){
             window.location = "/connectWallet"
+        }
+        function signout(){
+            window.location = "/signout";
         }
     </script>
 

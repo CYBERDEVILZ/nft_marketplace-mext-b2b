@@ -11,13 +11,23 @@
     </head>
 
     <body>
-        <div class="main">
-            <div class="heading">
-                <h1>your nft.</h1>
+        <div class="navBar">
+            <div class="mustlogo">
+                <img src="{{url_for('static', filename='/images/must-logo.png')}}">
             </div>
-            <div class="gallery"></div>
-            <div class="createButton">
-                <button type="button" class="btn btn-info" onclick="createnftpage()">create nft.</button>
+            <div class="signout" onclick="signout()">signout.</div>
+        </div>
+        <div class="mainDiv">
+            <div class="anotherDiv">
+                <div class="main">
+                    <div class="heading">
+                        <h1>your nft.</h1>
+                    </div>
+                    <div class="gallery"></div>
+                    <div class="createButton">
+                        <button type="button" class="btn btn-info" onclick="createnftpage()">create nft.</button>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
@@ -26,6 +36,10 @@
     <script>
         var contractInstance = null;
         // FUNCTIONS
+        function signout(){
+            window.location = "/signout";
+        }
+
         function createnftpage(){
             window.location.pathname="/createNFT"
         }

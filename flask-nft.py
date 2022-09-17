@@ -36,9 +36,9 @@ def login(select):
     if session.get("uid") != None and session.get("cid") != None:
         session.pop("uid")
         session.pop("cid")
-    if session.get("uid") != None:
+    if session.get("uid") != None and select == "booth":
         return redirect("/selectbooth")
-    if session.get("cid") != None:
+    if session.get("cid") != None and select == "customer":
         return redirect("/metaverse")
     if request.method == "GET":
         return render_template("login.html", type=select)

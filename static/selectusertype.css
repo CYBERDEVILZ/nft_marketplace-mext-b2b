@@ -4,8 +4,15 @@
     box-sizing: border-box;
     font-family: sans-serif;
   }
+
+  .mustlogo{
+    display: flex;
+    height: 200px;
+    text-align: center;
+    margin-right: 50px;
+  }
   
-  body {
+  .mainDiv {
     display: flex;
     justify-content: center;
     align-items: center;

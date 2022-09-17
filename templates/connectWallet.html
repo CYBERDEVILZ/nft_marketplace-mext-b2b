@@ -8,21 +8,30 @@
         <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
         
         <!-- BODY CONTENT HERE -->
-        <div class="elements">
-            <h1>connect wallet.</h1>
-            <button class="btn" type="button" id="connectButton">
-                <div class="image"><img src="{{url_for('static', filename='images/metamask.png')}}"></div>
-                <div class="walletName">MetaMask</div>
-            </button>
-            <button class="btn" type="button" id="connectButton">
-                <div class="image"><img src="{{url_for('static', filename='images/coinbase.png')}}"></div>
-                <div class="walletName">Coinbase Wallet</div>
-            </button>
-            <button class="btn" type="button" id="connectButton">
-                <div class="image"><img src="{{url_for('static', filename='images/trustwallet.png')}}"></div>
-                <div class="walletName">TrustWallet</div>
-            </button>
-            
+        <div class="navBar">
+            <div class="mustlogo">
+                <img src="{{url_for('static', filename='/images/must-logo.png')}}">
+            </div>
+            <div class="signout" onclick="signout()">signout.</div>
+        </div>
+        <div class="mainDiv">
+            <div class="anotherDiv">
+                <div class="elements">
+                    <h1>connect wallet.</h1>
+                    <button class="btn" type="button" id="connectButton">
+                        <div class="image"><img src="{{url_for('static', filename='images/metamask.png')}}"></div>
+                        <div class="walletName">MetaMask</div>
+                    </button>
+                    <button class="btn" type="button" id="connectButton">
+                        <div class="image"><img src="{{url_for('static', filename='images/coinbase.png')}}"></div>
+                        <div class="walletName">Coinbase Wallet</div>
+                    </button>
+                    <button class="btn" type="button" id="connectButton">
+                        <div class="image"><img src="{{url_for('static', filename='images/trustwallet.png')}}"></div>
+                        <div class="walletName">TrustWallet</div>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- SCRIPT HERE -->
@@ -44,6 +53,10 @@
             connectButton.addEventListener("click", connectWallet)
 
             // FUNCTIONS
+            function signout(){
+            window.location = "/signout";
+            }
+            
             async function connectWallet(){
                 if(typeof window.ethereum != "undefined"){
                     const accounts = await window.ethereum.request({method: "eth_requestAccounts"})
