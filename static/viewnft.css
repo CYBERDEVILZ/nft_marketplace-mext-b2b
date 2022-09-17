@@ -24,6 +24,7 @@ body {
     background-color: white;
     border-radius: 20px;
     width: min-content;
+    box-shadow: 5px 5px 20px #FFCC70;
 }
 
 #nftimg {
@@ -56,12 +57,18 @@ button {
     padding: 10px;
     font-size: 30px;
     border-radius: 10px;
-    border: 3px solid #4158D0;
-    color: #4158D0;
+    border: 0px solid #4158D0;
+    color: #7e44dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 10px 30px #7e44dc;
+    cursor: pointer;
 }
 
 button[disabled="true"]{
-    opacity: 0.5;
+    opacity: 0.7;
+    cursor: default;
 }
 
 button:hover {
@@ -69,7 +76,13 @@ button:hover {
 }
 
 #polygonimg {
-    width: 20px;
+    width: 23px;
     margin-left: 10px;
     color: white;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
