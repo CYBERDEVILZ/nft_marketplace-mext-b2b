@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="{{url_for('static', filename='web3Connect.js')}}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='buynft')}}.css">
+    <title>Buy NFT #{{id}}</title>
+</head>
+    <body>
+        <h1>Creating order for NFT #{{id}} ...</h1>
+    </body>
+    <script>
+        access();
+        buyNFT("{{id}}");
+    </script>
+</html>
