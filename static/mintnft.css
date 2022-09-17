@@ -1,0 +1,25 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%,   #FFCC70 100%);
+    font-size: 40px;
+    margin: 20px;
+    text-align: center;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    background-size: 100%;
+}
