@@ -75,10 +75,8 @@ def login(select):
             return redirect(f"/{select}/login")
 
 # SIGNUP
-@app.route("/<select>/signup", methods=["GET", "POST"])
+@app.route("/<select>/signup", methods=["POST"])
 def signup(select):
-    if request.method == "GET":
-        return render_template("signup.html")
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
@@ -180,6 +178,12 @@ def mintnft():
 @app.route("/buynft/<id>")
 def buynft(id):
     return render_template("buynft.html", id=id)
+
+@app.route("/metaverse")
+def metaverse():
+    if session.get("cid") == None:
+        return redirect("/customer/login")
+    return render_template('metaverse.html')
 
 if(__name__ == "__main__"):
     app.run(debug=True)
