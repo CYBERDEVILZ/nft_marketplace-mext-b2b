@@ -40,7 +40,12 @@
             async function checkConnection(){
                 await access();
                 if (walletAddress != null || walletAddress != undefined){
-                    window.location = "/nftbooth";
+                    if ("{{address}}" == "nftbooth"){
+                        window.location = "/nftbooth";
+                    }
+                    else {
+                        window.location = "/nft_marketplace/{{address}}"
+                    }
                 }
             }
 
@@ -109,7 +114,12 @@
                         }
                     }
                     // if connected successfully, redirect to nftBooth endpoint
-                    window.location.pathname = '/nftbooth'
+                    if ("{{address}}" == "nftbooth"){
+                        window.location = "/nftbooth";
+                    }
+                    else {
+                        window.location = "/nft_marketplace/{{address}}"
+                    }
                 }
             }
 

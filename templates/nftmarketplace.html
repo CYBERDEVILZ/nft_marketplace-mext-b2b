@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>NFT Booth</title>
+        <title>NFT Marketplace</title>
         <link rel="stylesheet" href="{{url_for('static', filename='nftbooth.css')}}">
         <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
         <script src="{{url_for('static', filename='web3Connect.js')}}"></script>
@@ -21,11 +21,11 @@
             <div class="anotherDiv">
                 <div class="main">
                     <div class="heading">
-                        <h1>your nft.</h1>
+                        <h1>buy nfts.</h1>
                     </div>
                     <div class="gallery"></div>
                     <div class="createButton">
-                        <button type="button" class="btn btn-info" onclick="createnftpage()">create nft.</button>
+                        <button type="button" class="btn btn-info" onclick="yournfts()">your nfts.</button>
                     </div>
                 </div>
             </div>
@@ -40,15 +40,18 @@
             window.location = "/signout";
         }
 
-        function createnftpage(){
-            window.location.pathname="/createNFT"
+        function yournfts(){
+            window.location.pathname="/yournfts"
         }
 
         // retrieve nfts
         retrieveNFT = async () => {
             await access();
+            if (walletAddress == null){
+                window.location = "/connectWallet/{{address}}"
+            }
             contractInstance = await new web3.eth.Contract(abi, addressContract);
-            await contractInstance.methods.mynft(walletAddress).call({from: walletAddress})
+            await contractInstance.methods.mynft("{{address}}").call({from: walletAddress})
             .then((s) => {
                 s.forEach(element => {
                     var tokenId = element["tokenId"];
@@ -72,7 +75,7 @@
         try{
             window.ethereum.on('accountsChanged', (accounts) => {
                 if(accounts.length == 0){
-                    window.location.pathname = "/connectWallet/nftbooth"
+                    window.location.pathname = "/connectWallet/{{address}}"
                 }
                 else{
                     window.location.reload()

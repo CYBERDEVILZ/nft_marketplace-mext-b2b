@@ -4,10 +4,45 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{url_for('static'), filename='metaverse'}}.css">
+        <link rel="stylesheet" href="{{url_for('static',  filename='metaverse')}}.css">
         <title>Metaverse</title>
     </head>
     <body>
-        
+        <div class="navBar">
+            <div class="mustlogo">
+                <img src="{{url_for('static', filename='/images/must-logo.png')}}">
+            </div>
+            <div class="signout" onclick="signout()">signout.</div>
+        </div>
+       <div class="mainDiv">
+            <div class="anotherDiv">
+            </div>
+       </div>
     </body>
+    <script>
+        // var
+        var dict = {{dictarr | safe}}
+
+        dict.forEach(element => {
+            element = JSON.parse(element);
+            var booth = document.createElement('div');
+            booth.setAttribute('class', 'booth');
+            var anotherDiv = document.querySelector(".anotherDiv");
+            anotherDiv.appendChild(booth);
+            var type = document.createElement('h1');
+            if (element['type'] == 0){type.innerHTML = 'youtube booth.'}
+            if (element['type'] == 1){type.innerHTML = 'nft market.'; booth.addEventListener('click', () => {window.location = "/nft_marketplace/"+element['address']})}
+            if (element['type'] == 2){type.innerHTML = 'games booth.'}
+            booth.appendChild(type);
+            var owner = document.createElement('h3');
+            owner.innerHTML = "- "+element['owner'];
+            booth.appendChild(owner);
+        });
+
+        // functions
+        function signout(){
+            window.location = "/signout";
+        }
+
+    </script>
 </html>

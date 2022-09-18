@@ -1,0 +1,110 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+body {
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%,   #FFCC70 100%);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.mainDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+
+/* NAV BAR STARTS*/
+.navBar {
+    padding: 20px;
+    height: min-content;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .signout{
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    color: #1b2559;
+    background-color: white;
+  }
+
+  .disconnect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .signout:hover{
+    cursor: pointer;
+  }
+  
+  .navBar img{
+    height: 100px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 20px;
+  }
+  /* NAV BAR ENDS */
+
+  .anotherDiv{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+  }
+
+  .booth{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+    height: 350px;
+    width: 350px;
+    background-color: white;
+    border-radius: 20px;
+  }
+
+  .booth:hover{
+    box-shadow: 5px 5px 20px #FFCC70;
+  }
+
+  h1 {
+    flex-grow: 2;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%,   #FFCC70 100%);
+    font-size: 50px;
+    margin: 10px;
+    text-align: center;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    background-size: 100%;
+  
+  }
+
+  h3 {
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%,   #FFCC70 100%);
+    font-size: 30px;
+    align-self: flex-end;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    background-size: 100%;
+  
+  }
+

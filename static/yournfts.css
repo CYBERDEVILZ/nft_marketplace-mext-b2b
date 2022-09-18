@@ -60,11 +60,11 @@ body {
 }
 
 .gallery {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    margin: 10px;
+    margin: 20px;
 }
 
 

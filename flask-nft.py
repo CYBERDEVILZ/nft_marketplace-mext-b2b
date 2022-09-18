@@ -1,3 +1,4 @@
+from pickle import NONE
 from flask import Flask, render_template, request, session, redirect, url_for
 import requests, json
 import firebase_admin
@@ -98,6 +99,9 @@ def signup(select):
 def signout():
     try:
         session.pop("uid")
+    except:
+        pass
+    try:
         session.pop("cid")
     except:
         pass
@@ -111,11 +115,11 @@ def selectBooth():
     return render_template("selectbooth.html")
 
 # CONNECT WALLET
-@app.route("/connectWallet")
-def connect():
-    if session.get("uid") == None:
+@app.route("/connectWallet/<url>")
+def connect(url):
+    if session.get("uid") == None and session.get("cid") == None:
         return redirect("/")
-    return render_template("connectWallet.html")
+    return render_template("connectWallet.html", address=url)
 
 # FILE UPLOAD
 @app.route("/createNFT", methods=["GET", "POST"])
@@ -159,14 +163,14 @@ def upload_file():
 # NFT BOOTH
 @app.route("/nftbooth")
 def nftbooth():
-    if session.get("uid") == None:
+    if session.get("uid") == None and session.get("cid") == None:
         return redirect("/")
     return render_template("nftbooth.html")
 
 # VIEW NFT
 @app.route("/nftbooth/<id>")
 def nftview(id):
-    if session.get("uid") == None:
+    if session.get("uid") == None and session.get("cid") == None:
         return redirect("/")
     return render_template("viewnft.html", id=id)
     
@@ -175,15 +179,31 @@ def nftview(id):
 def mintnft():
     return render_template("mintnft.html", name=request.args['name'], metadataURI=request.args['metadataURI'], imageuri=request.args['imageuri'], price=request.args['price'])
 
+# BUY NFT
 @app.route("/buynft/<id>")
 def buynft(id):
     return render_template("buynft.html", id=id)
 
+# METAVERSE
 @app.route("/metaverse")
 def metaverse():
     if session.get("cid") == None:
         return redirect("/customer/login")
-    return render_template('metaverse.html')
+    data = db.collection("booths").get()
+    dictarr = []
+    for i in data:
+        dictarr.append(json.dumps(i.to_dict()))
+    return render_template('metaverse.html', dictarr=dictarr, len=len(dictarr))
+
+# NFT MARKETPLACE
+@app.route("/nft_marketplace/<address>")
+def nftmarketplace(address):
+    return render_template("nftmarketplace.html", address=address)
+
+# YOUR NFTS
+@app.route("/yournfts")
+def yournfts():
+    return render_template("yournfts.html")
 
 if(__name__ == "__main__"):
     app.run(debug=True)
