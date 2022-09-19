@@ -205,5 +205,10 @@ def nftmarketplace(address):
 def yournfts():
     return render_template("yournfts.html")
 
+# WITHDRAW FUNDS
+@app.route("/withdraw")
+def withdraw():
+    return render_template("withdraw.html")
+
 if(__name__ == "__main__"):
     app.run(debug=True)

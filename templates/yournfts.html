@@ -44,6 +44,9 @@
         // retrieve nfts
         retrieveNFT = async () => {
             await access();
+            if (walletAddress == null){
+                window.location = "/metaverse"
+            }
             contractInstance = await new web3.eth.Contract(abi, addressContract);
             await contractInstance.methods.mynft(walletAddress).call({from: walletAddress})
             .then((s) => {

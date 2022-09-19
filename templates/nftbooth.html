@@ -15,7 +15,10 @@
             <div class="mustlogo">
                 <img src="{{url_for('static', filename='/images/must-logo.png')}}">
             </div>
-            <div class="signout" onclick="signout()">signout.</div>
+            <div class="anotheranotherDiv">
+                <div class="signout" onclick="signout()">signout.</div>
+                <div class="signout withdraw" onclick="withdraw()">withdraw NULL MATIC.</div>
+            </div>
         </div>
         <div class="mainDiv">
             <div class="anotherDiv">
@@ -35,9 +38,48 @@
     <!-- SCRIPT HERE -->
     <script>
         var contractInstance = null;
+        var matic = 0;
+
         // FUNCTIONS
         function signout(){
             window.location = "/signout";
+        }
+
+        async function getOwings(){
+            await access();
+            var contractInstance = await new web3.eth.Contract(abi, addressContract);
+            await contractInstance.methods.owings(walletAddress).call({from: walletAddress})
+            .then((s)=>{
+                s = s+"";
+                matic = window.web3.utils.fromWei(s, 'ether');
+                document.querySelector(".withdraw").innerHTML = "withdraw "+matic+" MATIC.";
+            }, 
+            (f)=>{
+                console.log(f)
+            })
+            .catch((e)=>{
+                console.log(e)
+            });
+        }
+
+        // withdraw funds
+        async function withdraw(){
+            await access();
+            if (matic == 0){
+                alert('cannot perform transaction!')
+                return
+            }
+            var contractInstance = await new web3.eth.Contract(abi, addressContract);
+            await contractInstance.methods.withdraw().send({from: walletAddress, gas: 3000000})
+            .then((s)=>{
+                console.log("success");
+            }, 
+            (f)=>{
+                console.log(f)
+            })
+            .catch((e)=>{
+                console.log(e)
+            });
         }
 
         function createnftpage(){
@@ -81,6 +123,7 @@
         
             access();
             retrieveNFT();
+            getOwings();
         }
         catch(e){
             console.log(e.message)

@@ -564,7 +564,7 @@ var abi = [
 		"type": "function"
 	}
 ];
-var addressContract = "0xb51C2a8664079fE3020edb935e7CD7335E56C12A";
+var addressContract = "0x584bA76954256a59d751256d3a3401D23429272a";
 var walletAddress = null;
 
 
@@ -573,13 +573,16 @@ console.log("contract deployed at: "+addressContract)
 // script to access metamask wallet
 access = async () => {
     window.web3 = new Web3(window.ethereum);
-    await window.web3.eth.getAccounts().then((success) => {walletAddress = success[0]; console.log(success[0])}, (failure) => {
+    await window.web3.eth.getAccounts().then((success) => {walletAddress = success[0]; console.log(`Wallet address: ${success[0]}`)}, (failure) => {
 		walletAddress = null;}).catch((e)=>{walletAddress = null;});
 }
 
 // minting fee
 mintingFee = async () => {
     await access();
+	if (walletAddress == null || walletAddress == undefined){
+		window.location="/connectWallet"
+	}
     await window.web3.eth.sendTransaction({
         from: walletAddress,
         to: addressContract,
@@ -630,4 +633,9 @@ buyNFT = async (tokenId) => {
 	.catch((e)=>{
 		console.log(e.message); window.location="/nftbooth/"+tokenId
 	});
+}
+
+// withdraw nfts
+withdraw = async () => {
+
 }
