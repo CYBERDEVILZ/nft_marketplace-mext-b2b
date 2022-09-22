@@ -5,6 +5,9 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from firebase_admin import auth
+import pandas as pd
+import numpy as np
+import math
 # from web3 import Web3
 
 # FIREBASE CONFIG
@@ -209,6 +212,71 @@ def yournfts():
 @app.route("/withdraw")
 def withdraw():
     return render_template("withdraw.html")
+
+@app.route("/nft_insight")
+def nft_insight():
+
+    '''
+    powered by UCB Bandit (UCB-1) algorithm. 
+    '''
+
+    # read csv
+    # NOTE: the dataset is collected on a user-to-user basis.
+    # Each entry represents the NFT bought by the user in that 
+    # particular session.
+    dataset = pd.read_csv('./dataset/test.csv')
+
+
+    # Implementing Reinforcement algorithm: UCB-1 Bandit
+    DATASET_SIZE = len(dataset)
+
+    no_of_companies = len(dataset.columns)
+    companies_selected = []
+    numbers_of_selections = [0] * no_of_companies
+    sums_of_reward = [0] * no_of_companies
+    total_reward = 0
+
+    # UC Bandit algo
+    for n in range(0, DATASET_SIZE):
+        company = 0
+        max_upper_bound = 0
+
+        for i in range(0, no_of_companies):
+            if (numbers_of_selections[i] > 0):
+                average_reward = sums_of_reward[i] / numbers_of_selections[i]
+                delta_i = math.sqrt(2 * math.log(n+1) / numbers_of_selections[i])
+                upper_bound = average_reward + delta_i
+            else:
+                upper_bound = 1e400
+
+            if upper_bound > max_upper_bound:
+                max_upper_bound = upper_bound
+                company = i
+
+        companies_selected.append(company)
+        numbers_of_selections[company] += 1
+        reward = dataset.values[n, company]
+        sums_of_reward[company] += reward
+        total_reward += reward
+
+    # debug: total reward pool
+    print(total_reward)
+    print(pd.Series(companies_selected).head(1500).value_counts(normalize=True))
+
+    result_index_list = pd.Series(companies_selected).head(1500).value_counts(normalize=True).keys().tolist()
+    columns = list(dataset.columns.values)
+    result = []
+    recomm_result = [-1]* len(dataset.columns)
+    
+    for i in range(len(dataset.columns)):
+        result.append(columns[result_index_list[i]])
+        if i<3:
+            recomm_result[i] = 1
+    
+    recomm_result[-2] = 0
+    recomm_result[-1] = 0
+    segment = 'semiconductor'
+    return render_template("insights.html", result=result, segment=segment, recomm_result=recomm_result)
 
 if(__name__ == "__main__"):
     app.run(debug=True)

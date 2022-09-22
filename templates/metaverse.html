@@ -18,6 +18,11 @@
             <div class="anotherDiv">
             </div>
        </div>
+
+       <div class="insightsDiv" onclick="insights()">
+            <div class="signout d-block" style="background-color: blue; color: white;">get market insights.</div>
+       </div>
+        
     </body>
     <script>
         // var
@@ -42,6 +47,10 @@
         // functions
         function signout(){
             window.location = "/signout";
+        }
+
+        function insights(){
+            window.location = "/nft_insight";
         }
 
     </script>

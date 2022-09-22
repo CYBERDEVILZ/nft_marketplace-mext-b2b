@@ -37,6 +37,7 @@ body {
     border-radius: 10px;
     color: #1b2559;
     background-color: white;
+    /* width: min-content; */
   }
 
   .disconnect {
@@ -108,3 +109,14 @@ body {
   
   }
 
+.insightsDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.d-block{
+  display: block;
+}
+.d-block:hover{
+  box-shadow: 5px 5px 20px white;
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='insights.css') }}">
+    <title>Market Insights</title>
+  </head>
+  <body>
+
+    <div class="parent">
+      <div class="section py-5">
+        <div class="heading text-center"><b>Market</b> <span class="font-weight-light">Insights</span></div>
+        <div class="sub-heading text-center text-muted font-weight-bold"><i>Must powers the insights with a live machine learning algorithm
+            that adapts to the market patterns to give you the best experience.
+        </i></div>
+      </div>
+
+      <div class="section py-5">
+        <div class="row">
+          <div class="col-8 mx-auto bg-purpal py-3 rounded-5">
+            <table class="table align-middle bg-light text-center mt-3">
+              <thead class="table-dark">
+                <tr>
+                  <th class="h3">COMPANY NAME</th>
+                  <th class="h3">SEGMENT</th>
+                  <th class="h3">MUST SUGGESTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in range(result | length) %}
+                <tr>
+                  <td>
+                    <b class="h5 text-capitalize font-italic">{{ result[i] }}</b>
+                  </td>
+                  <td>
+                    <p class="text-normal mb-0 h5 ">{{ segment }}</p>
+                  </td>
+                  {% if recomm_result[i] == 1 %}
+                  <td>
+                    <span class="badge badge-success rounded-pill d-inline h5">Recommended</span>
+                  </td>
+                  {% elif recomm_result[i] == 0%}
+                  <td>
+                    <span class="badge badge-danger rounded-pill d-inline">Not Recommended</span>
+                  </td>
+                  {% else %}
+                  <td>
+                    <span class="badge d-inline"></span>
+                  </td>
+                  {% endif %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+          
+      </div>
+      
+    </div>
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
