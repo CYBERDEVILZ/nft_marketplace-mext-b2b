@@ -35,4 +35,4 @@ Since, we are using this project on a Testnet, you can easily get some fake MATI
 Cryptocurrency over the TestNet are never real and you cannot exchange them for real money!
 
 ### Clone the repository
-If you are aware of using Git, then you can go ahead and clone this repository to your local desktop. Else, just go ahead and download the zip folder from here and extract the contents. 
+If you are aware of using Git, then you can go ahead and clone this repository to your local desktop. Else, just go ahead and download the zip folder from [here](https://github.com/CYBERDEVILZ/nft_marketplace/archive/refs/heads/main.zip) and extract the contents. 
