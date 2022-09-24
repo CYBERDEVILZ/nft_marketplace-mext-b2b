@@ -46,7 +46,7 @@ Since, we are using this project on a Testnet, you can easily get some fake MATI
 ### ⏬ Clone the repository
 If you are aware of using Git, then you can go ahead and clone this repository to your local desktop. Else, just go ahead and download the zip folder from [here](https://github.com/CYBERDEVILZ/nft_marketplace/archive/refs/heads/main.zip) and extract the contents. Make sure you are now inside the folder where all the files of this repository are visible.
 
-### 🔥 Initialize server
+### 🔥 Initialize the server
 In order to initialize the server, we need to do make some arrangements. Firstly, we must create a virtual environment using Python and secondly, install the dependencies inside it. This will save us from dependency conflicts in the future.
 
 #### ⚙️ Create a virtual environment
