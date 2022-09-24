@@ -1,4 +1,4 @@
-# 🖼️ NFT MARKETPLACE 🖼️
+# 🖼️ &nbsp;&nbsp;NFT MARKETPLACE&nbsp;&nbsp; 🖼️
 POC to implement an **NFT marketplace** in the **MEXT METAVERSE**.
 
 ## 📚 SUMMARY
@@ -42,6 +42,11 @@ In order to initialize the server, we need to do make some arrangements. Firstly
 
 #### ⚙️ Create a virtual environment
 While inside the folder where you can see other files of this repository, open your terminal / cmd prompt and issue the following command.
+```
+python -m venv venv
+```
+
+In certain cases, if the above command didn't work, you might want to specify the version number along with python as follows.
 ```
 python3 -m venv venv
 ```
