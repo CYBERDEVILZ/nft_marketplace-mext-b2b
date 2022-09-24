@@ -26,12 +26,18 @@ Authentication is made possible by utilizing Google Firebase, which is a BaaS (B
 Follow the points mentioned below to run the project in your system. If you are lazy enough to read them, kindly navigate down to find a demo video of setting up and running the project.
 
 ### 🧾 Create a MetaMask Wallet account
+https://user-images.githubusercontent.com/55954313/192086056-b3dae06a-2e3d-4be4-9773-1cb3ac8ca54b.mp4
+
 This project utilizes MetaMask wallet to perform transactions over the Polygon Network. If you don't have a MetaMask Wallet, kindly install the extension from your browser marketplace and create an account in it. It is pretty much easy to create an account in MetaMask. All the instructions are provided the moment you install and activate the extension in your browser.
 
 ### ⛓️ Add Polygon Chain to wallet
+https://user-images.githubusercontent.com/55954313/192093954-8d74d85a-5e37-41f1-90b2-c3643243c393.mp4
+
 Since the NFT Marketplace has been implemented on the Polygon Blockchain, we need to add this chain to our wallet and switch to the network. For the purpose of testing out this application, I have deployed the contract on the **Polygon Mumbai TestNet**. This is crucial as you can experiment with the application without using real money for transaction purposes. So, go ahead and add the Polygon Mumbai TestNet to your wallet. If you are unfamiliar, navigate to the bottom part of this README to find demo videos.
 
 ### 💲 Add some MATIC to your account
+https://user-images.githubusercontent.com/55954313/192094575-c1ed8eed-1771-4529-b710-eeada6977605.mp4
+
 Since transactions that happen over the blockchain requires some gas fees to be paid to the validators (or miners, depending on the consensus used), you must possess some amount of MATIC, which is the cryptocurrency used in Polygon Network.
 Since, we are using this project on a Testnet, you can easily get some fake MATIC from the faucet made available [here](https://faucet.polygon.technology/)
 
@@ -82,7 +88,3 @@ python flask-nft.py
 This will spin up a **server on your localhost at port 5000**. Navigate to http://localhost:5000 to see your project running live!
 
 ## 📺 Demo Video
-### Create a Metamask Wallet Account
-https://user-images.githubusercontent.com/55954313/192086056-b3dae06a-2e3d-4be4-9773-1cb3ac8ca54b.mp4
-
-
