@@ -28,11 +28,14 @@ Follow the points mentioned below to run the project in your system. If you are 
 ### 🧾 Create a MetaMask Wallet account
 This project utilizes MetaMask wallet to perform transactions over the Polygon Network. If you don't have a MetaMask Wallet, kindly install the extension from your browser marketplace and create an account in it. It is pretty much easy to create an account in MetaMask. All the instructions are provided the moment you install and activate the extension in your browser.
 
+### ⛓️ Add Polygon Chain to wallet
+Since the NFT Marketplace has been implemented on the Polygon Blockchain, we need to add this chain to our wallet and switch to the network. For the purpose of testing out this application, I have deployed the contract on the **Polygon Mumbai TestNet**. This is crucial as you can experiment with the application without using real money for transaction purposes. So, go ahead and add the Polygon Mumbai TestNet to your wallet. If you are unfamiliar, navigate to the bottom part of this README to find demo videos.
+
 ### 💲 Add some MATIC to your account
 Since transactions that happen over the blockchain requires some gas fees to be paid to the validators (or miners, depending on the consensus used), you must possess some amount of MATIC, which is the cryptocurrency used in Polygon Network.
 Since, we are using this project on a Testnet, you can easily get some fake MATIC from the faucet made available [here](https://faucet.polygon.technology/)
 
-Cryptocurrency over the TestNet are never real and you cannot exchange them for real money!
+#### Cryptocurrency over the TestNet are never real and you cannot exchange them for real money!
 
 ### ⏬ Clone the repository
 If you are aware of using Git, then you can go ahead and clone this repository to your local desktop. Else, just go ahead and download the zip folder from [here](https://github.com/CYBERDEVILZ/nft_marketplace/archive/refs/heads/main.zip) and extract the contents. Make sure you are now inside the folder where all the files of this repository are visible.
@@ -79,3 +82,7 @@ python flask-nft.py
 This will spin up a **server on your localhost at port 5000**. Navigate to http://localhost:5000 to see your project running live!
 
 ## 📺 Demo Video
+### Create a Metamask Wallet Account
+https://user-images.githubusercontent.com/55954313/192086056-b3dae06a-2e3d-4be4-9773-1cb3ac8ca54b.mp4
+
+
