@@ -88,3 +88,10 @@ python flask-nft.py
 This will spin up a **server on your localhost at port 5000**. Navigate to http://localhost:5000 to see your project running live!
 
 ## 📺 Demo Video
+### 👾 Creating NFTs
+https://user-images.githubusercontent.com/55954313/192134654-f91aa249-63b6-401c-b891-44fb2967b953.mp4
+
+### 🛒 Buying NFTs
+
+
+### 💳 Wihtdrawing Matic
