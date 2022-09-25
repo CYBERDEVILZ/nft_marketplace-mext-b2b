@@ -1,4 +1,6 @@
 # 🖼️ &nbsp;&nbsp;NFT MARKETPLACE&nbsp;&nbsp; 🖼️
+![image](https://user-images.githubusercontent.com/55954313/192134856-3e014900-98c8-4a63-80d1-36fb24c09777.png)
+
 POC to implement an **NFT marketplace** in the **MEXT METAVERSE**.
 
 ## 📚 SUMMARY
@@ -92,6 +94,8 @@ This will spin up a **server on your localhost at port 5000**. Navigate to http:
 https://user-images.githubusercontent.com/55954313/192134654-f91aa249-63b6-401c-b891-44fb2967b953.mp4
 
 ### 🛒 Buying NFTs
-
+https://user-images.githubusercontent.com/55954313/192136119-70e6d827-5f59-4c88-ae2b-d9b18634bc44.mp4
 
 ### 💳 Wihtdrawing Matic
+https://user-images.githubusercontent.com/55954313/192137117-1fcf6990-0afe-4cc6-b114-fe6cb6dbf8e3.mp4
+
