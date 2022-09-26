@@ -96,6 +96,6 @@ https://user-images.githubusercontent.com/55954313/192134654-f91aa249-63b6-401c-
 ### 🛒 Buying NFTs
 https://user-images.githubusercontent.com/55954313/192136119-70e6d827-5f59-4c88-ae2b-d9b18634bc44.mp4
 
-### 💳 Wihtdrawing Matic
+### 💳 Withdrawing Matic
 https://user-images.githubusercontent.com/55954313/192137117-1fcf6990-0afe-4cc6-b114-fe6cb6dbf8e3.mp4
 
